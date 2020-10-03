@@ -37,6 +37,9 @@ body {
     }
 }
 
+
+/* #region hero-header */
+
 @media (min-width: 768px) {
     .homepage-normative .hero.rebranded .hero-header {
         display: -webkit-box;
@@ -64,6 +67,17 @@ body {
 .homepage-normative .hero .hero-header {
     text-align: center;
 }
+
+@media (min-width: 768px) {
+    .homepage-normative .hero.rebranded .hero-header h1 {
+        max-width: 715px;
+        margin: 0;
+        font-weight: 700;
+    }
+}
+
+
+/* #endregion hero-header */
 
 
 /* #region search-container */
