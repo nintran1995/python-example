@@ -18,7 +18,8 @@
                         <h2 class="hidden-xs">Book trusted sitters and dog walkers who'll treat your pets like family.</h2>
                     </div>
                     <div class="search-container">
-                        <form role="form" class="search-form search-form-new js-search-form " action="/search/" method="GET">
+                        <form class="search-form search-form-new js-search-form">
+                            {% csrf_token %}
                             <div class="pet-type-select">
                                 <div class="heading">
                                     I'm looking for service for my:
@@ -27,7 +28,7 @@
                                     <ul class="list-inline">
                                         <li class="checkbox margin-top-x0 margin-bottom-x0">
                                             <label class="margin-right-x2">
-                                            <input type="checkbox" id="pet-type-checkbox-dog-search-form"
+                                            <input type="checkbox" id="pet-type-checkbox-dog-search-form" checked
                                                 class="js-pet-type-checkbox" value="dog">Dog
                                         </label>
                                             <label>
@@ -38,11 +39,8 @@
                                     </ul>
                                 </div>
                             </div>
-
                             <input type="hidden" value="dog" name="pet_type">
-
                             <div class="row row-lopad-lg row-lopad-md row-lopad-sm stay-type-buttons margin-top-x2">
-
                                 <div class="away-wrapper col-sm-7 col-lopad-lg col-lopad-md col-lopad-sm" role="group" aria-labelledby="overnight_service_buttons_label_eec83980627d4fc7828e6fb7d2c908d8">
                                     <span id="overnight_service_buttons_label_eec83980627d4fc7828e6fb7d2c908d8">For When
                                     You're Away</span>
@@ -116,12 +114,10 @@
                                     </div>
                                 </div>
                                 <input type="hidden" name="service_type" id="type_eec83980627d4fc7828e6fb7d2c908d8" value="overnight-boarding" class="js-stay-type">
-                                <input type="hidden" name="frequency" class="js-frequency">
                             </div>
                             <div class="js-browsable-search-inputs">
                                 <div class="row row-lopad-lg row-lopad-md row-lopad-sm margin-bottom-x1 margin-top-x2 hidden-xs">
                                     <div class="js-search-form-location-col col-sm-4 col-lopad-lg col-lopad-md col-lopad-sm">
-
                                         <span class="js-service-name">Boarding</span> near
                                     </div>
                                     <div class="js-search-form-dates-col col-sm-8 col-xs-12 col-lopad-lg col-lopad-md col-lopad-sm js-stay-frequency-toggle-title">
@@ -131,11 +127,7 @@
                                     <div class="search-form-location-col js-search-form-location-col col-sm-4 col-lopad-lg col-lopad-md col-lopad-sm">
                                         <div class="form-group">
                                             <label for="location_eec83980627d4fc7828e6fb7d2c908d8" class="sr-only">Location</label>
-                                            <input type="text" class="form-control js-location-input showgoogle" id="location_eec83980627d4fc7828e6fb7d2c908d8" name="location" placeholder="Zip Code or Address" autocomplete="off" data-geocoded="geocoded">
-                                            <input type="hidden" name="centerlat" class="js-lat" data-geo="lat">
-                                            <input type="hidden" name="centerlng" class="js-lng" data-geo="lng">
-                                            <input type="hidden" name="location_type" class="js-location-type" value="">
-                                            <input type="hidden" name="raw_location_types" class="js-raw-location-types" value="">
+                                            <input type="text" value="0" class="form-control js-location-input showgoogle" id="location" name="location" placeholder="Zip Code or Address" autocomplete="off" data-geocoded="geocoded">
                                         </div>
                                     </div>
                                     <div class="search-form-dates-col js-search-form-dates-col col-sm-8 col-xs-12 col-lopad-lg col-lopad-md col-lopad-sm form-group">
@@ -144,7 +136,7 @@
                                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 frequency-toggle-start-date">
                                                     <div class="input-group-wrapper js-datepicker-calendar-trigger" data-trigger-target="#start_date_1">
                                                         <div class="input-group with-seamless-addon">
-                                                            <input type="text" class="form-control " name="start_date" id="start_date_1" aria-label="Start Date" placeholder="Drop off" autocomplete="off" data-rule-required="true" data-rule-l10ndate="true">
+                                                            <input type="text" class="form-control" value="10/05/2020" name="start_date" id="start_date_1" aria-label="Start Date" placeholder="Drop off" autocomplete="off" data-rule-required="true" data-rule-l10ndate="true">
                                                             <span class="input-group-addon date-picker-control-addon">
                                                             <span class="far fa-calendar-alt" style="right: 9px;
                                                             position: absolute;
@@ -164,7 +156,7 @@
                                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 frequency-toggle-end-date">
                                                     <div class="input-group-wrapper js-datepicker-calendar-trigger" data-trigger-target="#end_date_1">
                                                         <div class="input-group with-seamless-addon">
-                                                            <input type="text" class="form-control date-picker-control" name="end_date" id="end_date_1" aria-label="End Date" placeholder="Pick up" autocomplete="off" data-rule-required="true" data-rule-l10ndate="true">
+                                                            <input type="text" class="form-control" value="10/05/2020" name="end_date" id="end_date_1" aria-label="End Date" placeholder="Pick up" autocomplete="off" data-rule-required="true" data-rule-l10ndate="true">
                                                             <span class="input-group-addon date-picker-control-addon">
                                                             <span class="far fa-calendar-alt" style="right: 9px;
                                                             position: absolute;
@@ -216,12 +208,12 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <div class="search-form-submit-col col-lg-5 col-md-5 col-sm-5 col-lopad-lg col-lopad-md col-lopad-sm hidden-xs">
                                         <div class="control-label">&nbsp;</div>
-                                        <button class="rover-btn rover-btn-primary btn-block desktop-submit" type="submit">Search</button>
+                                        <button id="btnSubmit" class="rover-btn rover-btn-primary btn-block desktop-submit">Search</button>
                                     </div>
                                 </div>
+                                <input type="hidden" name="dog_size" value="s">
                             </div>
                         </form>
                     </div>
@@ -232,14 +224,39 @@
 </div>
 <script>
     $(function() {
-        $(".rover-btn.rover-btn-default.btn-block").click(function(e) {
-            $(this).toggleClass("active")
-            e.preventDefault();
+        $("#pet-type-checkbox-dog-search-form").click(function(e) {
+            $("#pet-type-checkbox-cat-search-form").prop('checked', false)
+            $('input[name="pet_type"]').val("dog")
         });
+        $("#pet-type-checkbox-cat-search-form").click(function(e) {
+            $("#pet-type-checkbox-dog-search-form").prop('checked', false)
+            $('input[name="pet_type"]').val("cat")
+        });
+
         $(".rover-button.text-center.js-stay-type-btn.js-stickit-data-value").click(function(e) {
             $(".rover-button.text-center.js-stay-type-btn.js-stickit-data-value").removeClass("active");
-            $(this).toggleClass("active")
-            e.preventDefault();
+            $(this).addClass("active")
+            $('input[name="service_type"]').val($(this).data().value)
+            e.preventDefault()
+        });
+
+        $(".rover-btn.rover-btn-default.btn-block").click(function(e) {
+            $(".rover-btn.rover-btn-default.btn-block").removeClass("active");
+            $(this).addClass("active")
+            $('input[name="dog_size"]').val($(this).find("strong").text()[0])
+            e.preventDefault()
+        });
+
+        $("#btnSubmit").click(function(e) {
+            e.preventDefault()
+
+            var zip_code = $("#location").val()
+            var start = $("#start_date_1").val().replaceAll('/', '_')
+            var end = $("#end_date_1").val().replaceAll('/', '_')
+            var size = $('input[name="dog_size"]').val().toLowerCase()
+
+            debugger
+            window.location = zip_code + '/' + start + '/' + end + '/' + size
         });
     });
 </script>
