@@ -15,7 +15,8 @@ class IndexView(generic.ListView):
 def search(request, boarding_zip_code, boarding_start, boarding_end, boarding_size):
     # selected_choice = question.choice_set.get(pk=request.POST['choice'])
     # return HttpResponse("You're looking at question %s." % boarding_zip_code)
-    boardings = Boarding.objects.order_by('-start_date')[:5]
+    boardings = Boarding.objects.filter(
+        size=boarding_size).order_by('-start_date')[:5]
     return render(request, 'bookings/search.html', {
         'boardings': boardings,
     })
