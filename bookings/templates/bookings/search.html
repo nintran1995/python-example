@@ -1,0 +1,22 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Zip Code</th>
+            <th scope="col">Start</th>
+            <th scope="col">End</th>
+            <th scope="col">Size</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for choice in boardings.all %}
+        <tr>
+            <td>{{choice.zip_code}}</td>
+            <td>{{choice.start_date}}</td>
+            <td>{{choice.end_date}}</td>
+            <td>{{choice.size}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
